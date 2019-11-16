@@ -51,6 +51,9 @@ class SchemaGenerator {
 		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('_numeric', 'float');
 		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('cidr', 'string');
 		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('inet', 'string');
+		
+		// Integer "NON NULL" do SQLITE
+		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('integer non', 'integer');
 
 		$this->database = $connection->getDatabase();
 
@@ -72,6 +75,7 @@ class SchemaGenerator {
 
 	public function getFields($table)
 	{
+		d([$table, $this->schema]);
 		return $this->fieldGenerator->generate($table, $this->schema, $this->database, $this->ignoreIndexNames);
 	}
 

@@ -34,6 +34,7 @@ class FieldGenerator {
 	public function generate($table, $schema, $database, $ignoreIndexNames)
 	{
 		$this->database = $database;
+		// d([$table, $schema, $database, $ignoreIndexNames]);
 		$columns = $schema->listTableColumns( $table );
 		if ( empty( $columns ) ) return false;
 
